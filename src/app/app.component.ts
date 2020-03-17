@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MapService } from './services/map.service';
 
 @Component({
@@ -10,6 +10,9 @@ export class AppComponent {
   lat = 48.4070118;
   lng = 32.6144772;
   constructor(private map: MapService) {
+  }
 
+  public onMarkerClick(e) {
+    console.log(e);
   }
 }

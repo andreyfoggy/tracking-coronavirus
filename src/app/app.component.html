@@ -4,4 +4,6 @@
 [zoom]="6"
 [latitude]="lat" 
 [longitude]="lng">
+<agm-marker (markerClick)="onMarkerClick($event)" #marker [latitude]="lat" title="hi"
+[longitude]="lng"></agm-marker>
 </agm-map>
