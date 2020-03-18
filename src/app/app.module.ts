@@ -14,7 +14,7 @@ import { MapService } from './services/map.service';
       apiKey: 'AIzaSyCfvM1t5Hb_WywtcO6BEXtEUOuJlCpWszY',
     })
   ],
-  providers: [MapService, MarkerManager, GoogleMapsAPIWrapper ],
+  providers: [MapService, MarkerManager, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,22 @@
-<agm-map 
-[fullscreenControl]="true" 
-[maxZoom]="10"
-[zoom]="6"
-[latitude]="lat" 
-[longitude]="lng">
-<agm-marker (markerClick)="onMarkerClick($event)" #marker [latitude]="lat" title="hi"
-[longitude]="lng"></agm-marker>
+<agm-map [fullscreenControl]="true"
+         (mapClick)="onMapClick($event)"
+         [maxZoom]="10"
+         [zoom]="6"
+         [latitude]="lat" 
+         [longitude]="lng">
+
+        <ng-container *ngFor="let marker of markers">
+
+            <agm-marker (markerClick)="onMarkerClick($event, window)" [iconUrl]="marker.icon" [latitude]="marker.lat" [longitude]="marker.lng">
+                <agm-info-window #window>
+                    <div class="info-wraper">
+                        <div>{{marker.name}}</div>
+                        <div class="cases-counter">{{marker.cases}} захворювань</div>
+                        <div *ngIf="marker.deaths" class="death-counter">{{marker.deaths}} смертей</div>
+                    </div>
+                </agm-info-window>
+            </agm-marker>
+
+        </ng-container>
+
 </agm-map>
