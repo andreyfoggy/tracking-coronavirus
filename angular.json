@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "corona-map"
+    }
+  },
+  "defaultProject": "corona-map",
+  "cli": {
+    "analytics": "3df2cc85-aa4f-41a7-be94-313e6af90731"
+  }
 }
