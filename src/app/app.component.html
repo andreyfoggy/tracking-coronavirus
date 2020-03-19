@@ -1,4 +1,7 @@
-<agm-map [fullscreenControl]="true"
+<h2>Поширення COVID-19 в Україні</h2>
+<div class="map-wrapper">
+
+    <agm-map [fullscreenControl]="true"
          (mapClick)="onMapClick($event)"
          [maxZoom]="10"
          [zoom]="6"
@@ -10,13 +13,24 @@
             <agm-marker (markerClick)="onMarkerClick($event, window)" [iconUrl]="marker.icon" [latitude]="marker.lat" [longitude]="marker.lng">
                 <agm-info-window #window>
                     <div class="info-wraper">
-                        <div>{{marker.name}}</div>
-                        <div class="cases-counter">{{marker.cases}} захворювань</div>
-                        <div *ngIf="marker.deaths" class="death-counter">{{marker.deaths}} смертей</div>
+                        <div class="region-name">{{marker.name}}</div>
+                        <div class="cases-counter">захворювань: {{marker.cases}}</div>
+                        <div *ngIf="marker.deaths" class="death-counter">смертей: {{marker.deaths}}</div>
                     </div>
                 </agm-info-window>
             </agm-marker>
 
         </ng-container>
 
-</agm-map>
+    </agm-map>
+
+    <div class="map-description">
+        <img src="assets/icons/circle-orange.png" alt="" class="src"><div>- регіон де виявили захворювання на короновірус</div>
+    </div>
+    <div class="general-info">
+        <div style="color: #aaa;">Усього випадків виявлено: {{ casesAll }}</div>
+        <div style="color: #696969;">Усього смертей: {{ deathsAll }}</div>
+    </div>
+</div>
+
+

@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
   lat = 48.4070118;
   lng = 32.6144772;
   markers = [];
+  casesAll = 0;
+  deathsAll = 0;
   private previous;
   constructor(private map: MapService) {
   }
@@ -18,6 +20,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.markers = markers.map(marker => {
       return {...marker, icon: 'assets/icons/circle-orange.png'};
+    });
+    this.markers.forEach(marker => {
+      if (Number(marker.cases)) { this.casesAll += marker.cases; }
+      if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
     });
   }
 
