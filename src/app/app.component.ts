@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MapService } from './services/map.service';
 import { markers } from './app.constants';
+import { HttpService } from './services/http.service';
 
 enum IconColors  {
   orange = 20
@@ -17,18 +18,19 @@ export class AppComponent implements OnInit {
   casesAll = 0;
   deathsAll = 0;
   private previous;
-  constructor(private map: MapService) {
+  constructor(private map: MapService, private http: HttpService) {
   }
 
   ngOnInit() {
     this.markers = markers.map((marker: any) => {
-      marker.icon = this.getIcon(marker.cases, marker.deaths);
-      return marker;
+      return {...marker, icon: this.getIcon(marker.cases, marker.deaths) };
     });
     this.markers.forEach(marker => {
       if (Number(marker.cases)) { this.casesAll += marker.cases; }
       if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
     });
+
+    this.http.getData();
   }
 
   private getIcon(cases, death) {
