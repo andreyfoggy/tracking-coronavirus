@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http'
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,18 @@ import { HttpClient } from '@angular/common/http'
 export class HttpService {
 
   constructor(private firestore: AngularFirestore, private http: HttpClient) {
-    
   }
 
-  addRegion(data) {
-    return new Promise<any>((resolve, reject) =>{
-        this.firestore
-            .collection('regions')
-            .add(data)
-            .then(res => {
-              console.log(res)
-            }, err => console.log(err));
-    });
-  }
+  getCasesData() {
+    return this.http.get('/regions')
+    .pipe(map((res: any) => {
+      const regions = res.regions.regions;
+      const kyivRegion = regions[regions.findIndex(region => region.name === 'kiev')];
+      const kyivCity   = regions[regions.findIndex(region => region.name === 'kievcity')];
+      kyivRegion.confirmed += kyivCity.confirmed;
 
-  getData() {
-    this.http.get('https://cdn.pravda.com/cdn/covid-19/ukraine.json')
-      .subscribe(res => {
-        console.log(res)
-      });
+      return regions;
+    }))
   }
 
 }

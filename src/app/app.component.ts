@@ -22,19 +22,32 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.markers = markers.map((marker: any) => {
-      return {...marker, icon: this.getIcon(marker.cases, marker.deaths) };
-    });
-    this.markers.forEach(marker => {
-      if (Number(marker.cases)) { this.casesAll += marker.cases; }
-      if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
-    });
+    this.http.getCasesData()
+      .subscribe((res: any) => {
+        console.log(res)
+        const regionCases = res;
 
-    this.http.getData();
+        this.markers = markers.map(marker => {
+          const casesData = regionCases.find(region => region.name === marker.id);
+          return {
+            ...marker,
+            cases: casesData.confirmed,
+            deaths: casesData.deaths,
+            icon: this.getIcon(casesData.confirmed, casesData.deaths)
+          }
+        });
+
+        this.markers.forEach(marker => {
+          if (Number(marker.cases)) { this.casesAll += marker.cases; }
+          if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
+        });
+      })
   }
 
-  private getIcon(cases, death) {
-    return 'assets/icons/circle-orange.png'
+  private getIcon(cases, deaths) {
+    const shape = deaths ? 'diamond' : 'circle';
+    const color = cases < 20 ? 'orange' : cases < 100 ? 'red' : 'purple';
+    return `assets/icons/${shape}-${color}.png`;
   }
 
   public onMarkerClick(e, infowindow) {

@@ -13,7 +13,7 @@
             <agm-marker (markerClick)="onMarkerClick($event, window)" [iconUrl]="marker.icon" [latitude]="marker.lat" [longitude]="marker.lng">
                 <agm-info-window #window>
                     <div class="info-wraper">
-                        <div class="region-name">{{marker.name}}</div>
+                        <div class="region-name">{{marker.title}}</div>
                         <div class="cases-counter">захворювань: {{marker.cases}}</div>
                         <div *ngIf="marker.deaths" class="death-counter">смертей: {{marker.deaths}}</div>
                     </div>
