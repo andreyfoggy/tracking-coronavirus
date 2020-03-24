@@ -2,6 +2,9 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MapService } from './services/map.service';
 import { markers } from './app.constants';
 
+enum IconColors  {
+  orange = 20
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,13 +21,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.markers = markers.map(marker => {
-      return {...marker, icon: 'assets/icons/circle-orange.png'};
+    this.markers = markers.map((marker: any) => {
+      marker.icon = this.getIcon(marker.cases, marker.deaths);
+      return marker;
     });
     this.markers.forEach(marker => {
       if (Number(marker.cases)) { this.casesAll += marker.cases; }
       if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
     });
+  }
+
+  private getIcon(cases, death) {
+    return 'assets/icons/circle-orange.png'
   }
 
   public onMarkerClick(e, infowindow) {
