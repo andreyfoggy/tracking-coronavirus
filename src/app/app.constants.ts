@@ -15,7 +15,7 @@ export const markers = [
         deaths: 1
     },
     {
-        id: 2,
+        id: 3,
         name: 'Чернівецька область',
         lat: 48.12,
         lng: 26.05,
@@ -23,7 +23,7 @@ export const markers = [
         deaths: 1
     },
     {
-        id: 3,
+        id: 4,
         name: 'Донецька область',
         lat: 47.85,
         lng: 37.73,
