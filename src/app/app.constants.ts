@@ -76,5 +76,17 @@ export const regions = [
         title: 'Волинська область',
         lat: 50.75,
         lng: 25.15,
-    }
+    },
+    {
+        name: 'crimea',
+        title: 'Окупований Крим',
+        lat: 44.58,
+        lng: 34.06,
+    },
+    {
+        name: 'sumy',
+        title: 'Сумська область',
+        lat: 50.53,
+        lng: 34.45,
+    },
 ];
