@@ -3,9 +3,7 @@ const path    = require('path');
 const request = require('request');
 
 const app = express();
-let regionsINFO = null;
 
-getRegionsData();
 initAPI()
 initAngularApp();
 
@@ -13,8 +11,12 @@ initAngularApp();
 
 
 function initAPI() {
-    app.get('/regions', (req,res) => res.status(200)
-    .json({ regions: regionsINFO }));
+    app.get('/regions', (req, serverResponse) => {
+        request('https://cdn.pravda.com/cdn/covid-19/ukraine.json', { json: true }, (err, res, body) => {
+            serverResponse.status(200)
+            .json({ regions: body });
+        });
+    });
 }
 
 function initAngularApp() {
@@ -25,10 +27,4 @@ function initAngularApp() {
     });
     
     app.listen(process.env.PORT || 8080);
-}
-
-function getRegionsData(res) { 
-    request('https://cdn.pravda.com/cdn/covid-19/ukraine.json', { json: true }, (err, res, body) => {
-        regionsINFO = body;
-    });
 }

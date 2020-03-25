@@ -1,11 +1,8 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MapService } from './services/map.service';
-import { markers } from './app.constants';
+import { regions } from './app.constants';
 import { HttpService } from './services/http.service';
 
-enum IconColors  {
-  orange = 20
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,43 +15,48 @@ export class AppComponent implements OnInit {
   casesAll = 0;
   deathsAll = 0;
   private previous;
-  constructor(private map: MapService, private http: HttpService) {
-  }
+
+  constructor(private map: MapService, private http: HttpService) { }
 
   ngOnInit() {
     this.http.getCasesData()
-      .subscribe((res: any) => {
-        console.log(res)
-        const regionCases = res;
+      .subscribe(res => {
+        this.setMarkers(res);
 
-        this.markers = markers.map(marker => {
-          const casesData = regionCases.find(region => region.name === marker.id);
-          return {
-            ...marker,
-            cases: casesData.confirmed,
-            deaths: casesData.deaths,
-            icon: this.getIcon(casesData.confirmed, casesData.deaths)
-          }
-        });
-
-        this.markers.forEach(marker => {
-          if (Number(marker.cases)) { this.casesAll += marker.cases; }
-          if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
-        });
+        this.setSummary();
       })
   }
 
-  private getIcon(cases, deaths) {
+  private setMarkers(regionCasesCollection: Array<any>) {
+    this.markers = regions.map(region => {
+      const regionCasesElem = regionCasesCollection.find(item => item.name === region.name);
+      return {
+        ...region,
+        cases: regionCasesElem.confirmed,
+        deaths: regionCasesElem.deaths,
+        icon: this.getIcon(regionCasesElem.confirmed, regionCasesElem.deaths)
+      }
+    });
+  }
+
+  private setSummary() {
+    this.markers.forEach(marker => {
+      if (Number(marker.cases)) { this.casesAll += marker.cases; }
+      if (Number(marker.deaths)) { this.deathsAll += marker.deaths; }
+    });
+  }
+
+  private getIcon(cases: number, deaths: number) {
     const shape = deaths ? 'diamond' : 'circle';
     const color = cases < 20 ? 'orange' : cases < 100 ? 'red' : 'purple';
     return `assets/icons/${shape}-${color}.png`;
   }
 
   public onMarkerClick(e, infowindow) {
-    this.closePrevious(infowindow);
+    this.closePreviousInfoWindow(infowindow);
   }
 
-  private closePrevious(infowindow) {
+  private closePreviousInfoWindow(infowindow) {
     if (this.previous && this.previous.close) {
       this.previous.close();
     }

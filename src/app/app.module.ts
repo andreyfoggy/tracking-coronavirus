@@ -22,7 +22,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
       apiKey: 'AIzaSyCfvM1t5Hb_WywtcO6BEXtEUOuJlCpWszY',
     })
   ],
-  providers: [HttpService, MapService, MarkerManager, GoogleMapsAPIWrapper],
+  providers: [HttpService, MarkerManager, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
