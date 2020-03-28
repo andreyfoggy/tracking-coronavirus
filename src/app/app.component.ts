@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   private setMarkers(regionCasesCollection: Array<any>) {
     this.markers = regions.map(region => {
       const regionCasesElem = regionCasesCollection.find(item => item.name === region.name);
+      console.log(regionCasesElem.name);
       return {
         ...region,
         cases: regionCasesElem.confirmed,

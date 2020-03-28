@@ -14,8 +14,8 @@ export const regions = [
     {
         name: 'chernivtsi',
         title: 'Чернівецька область',
-        lat: 48.12,
-        lng: 26.05,
+        lat: 48.27,
+        lng: 25.93,
     },
     {
         name: 'donetsk',
@@ -32,19 +32,19 @@ export const regions = [
     {
         name: 'ivanofrankivsk',
         title: 'Івано-Франковська область',
-        lat: 48.76,
-        lng: 24.55,
+        lat: 48.87,
+        lng: 24.66,
     },
     {
         name: 'lviv',
         title: 'Львівська область',
-        lat: 49.71,
+        lat: 49.78,
         lng: 24.02,
     },
     {
         name: 'ternopil',
         title: 'Тернопільска область',
-        lat: 49.34,
+        lat: 49.54,
         lng: 25.60,
     },
     {
@@ -88,5 +88,47 @@ export const regions = [
         title: 'Сумська область',
         lat: 50.53,
         lng: 34.45,
+    },
+    {
+        name: 'vinnytsya',
+        title: 'Віннитська область',
+        lat: 49.14,
+        lng: 28.30,
+    },
+    {
+        name: 'transcarpathia',
+        title: 'Закарпатська область',
+        lat: 48.38,
+        lng: 22.60,
+    },
+    {
+        name: 'mykolayiv',
+        title: 'Миколаївська область',
+        lat: 46.92,
+        lng: 32.00,
+    },
+    {
+        name: 'rivne',
+        title: 'Рівенська область',
+        lat: 50.55,
+        lng: 26.20,
+    },
+    {
+        name: 'kherson',
+        title: 'Херсонська область',
+        lat: 46.60,
+        lng: 32.60,
+    },
+    {
+        name: 'chernihiv',
+        title: 'Чернігівська область',
+        lat: 51.29,
+        lng: 31.18,
+    },
+    {
+        name: 'khmelnytskyy',
+        title: 'Хмельницька область',
+        lat: 49.24,
+        lng: 27.00,
     },
 ];
