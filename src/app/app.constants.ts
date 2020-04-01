@@ -31,7 +31,7 @@ export const regions = [
     },
     {
         name: 'ivanofrankivsk',
-        title: 'Івано-Франковська область',
+        title: 'Івано-Франківська область',
         lat: 48.87,
         lng: 24.66,
     },
@@ -130,5 +130,23 @@ export const regions = [
         title: 'Хмельницька область',
         lat: 49.24,
         lng: 27.00,
+    },
+    {
+        name: 'poltava',
+        title: 'Полтавська область',
+        lat: 49.36,
+        lng: 34.34,
+    },
+    {
+        name: 'kirovohrad',
+        title: 'Кіровоградська область',
+        lat: 48.30,
+        lng: 32.15,
+    },
+    {
+        name: 'kharkiv',
+        title: 'Харківська область',
+        lat: 49.90,
+        lng: 36.20,
     },
 ];

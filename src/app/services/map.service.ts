@@ -7,7 +7,7 @@ import { MarkerManager } from '@agm/core';
 export class MapService {
 
   constructor(private markerManager: MarkerManager) {
-    
+
   }
 
   public addMarker(params) {
